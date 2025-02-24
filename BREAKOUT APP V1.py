@@ -1,3 +1,23 @@
+import subprocess
+import sys
+
+def install_libraries():
+    """Automatically installs necessary libraries if not already installed."""
+    required_libraries = [
+        "yfinance", "pandas", "matplotlib", "colorama", "reportlab"
+    ]
+    
+    for lib in required_libraries:
+        try:
+            __import__(lib)
+        except ImportError:
+            print(f"📦 Installing {lib}...")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", lib])
+
+# Run installation check
+install_libraries()
+
+
 import yfinance as yf
 import pandas as pd
 import re
